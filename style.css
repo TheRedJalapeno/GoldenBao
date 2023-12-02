@@ -1,0 +1,92 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black; /* Starfield background */
+  overflow: hidden; /* Prevent scrollbars */
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background-color: white; /* Default star color */
+  opacity: 0; /* Start with stars invisible */
+  transition: opacity 1s ease-in-out; /* Fading effect */
+}
+
+#bao-container {
+  margin: 5%;
+  max-width: 450px; /* Max width is 450 pixels */
+  width: auto; /* Adjust width automatically */
+  height: auto; /* Adjust height automatically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  overflow: hidden; /* Hide overflow */
+  position: relative; /* To correctly position stars */
+  z-index: 1; /* Ensure bao is above the stars */
+  background-color: rgba(255, 246, 197, 0.7);
+  box-shadow: 0 0 30px 10px rgba(255, 215, 0, 0.7); /* Glowing effect */
+  transition: box-shadow 10s ease-in; /* Slow transition for hover effect */
+}
+
+#bao-container:hover {
+  box-shadow: 0 0 1000px 1000px white; /* Intense and large white glow */
+}
+
+/* Keyframes for the hover animation */
+@keyframes hoverEffect {
+  from { box-shadow: 0 0 30px 10px rgba(255, 215, 0, 0.7); }
+  to { box-shadow: 0 0 1000px 1000px white; }
+}
+
+#bao-container img {
+  width: 100%; /* Image takes full width of the container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+#bao-container::before {
+  content: '';
+  position: absolute;
+  top: -10px; /* Adjust as needed */
+  left: -10px; /* Adjust as needed */
+  width: calc(100% + 20px); /* Disk size, relative to the container */
+  height: calc(100% + 20px); /* Disk size, relative to the container */
+  background: linear-gradient(45deg, white, gold, white, gold); /* Alternating white and gold */
+  border-radius: 50%;
+  z-index: -1; /* Place it behind the bao */
+  animation: spin 5s linear infinite; /* Spinning animation */
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+#bao-container::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background-color: white;
+  opacity: 0;
+  z-index: -1; /* Initially behind everything */
+  transform: scale(0); /* Use transform scale instead of width and height */
+  transition: opacity 10s ease-in, transform 10s ease-in; /* Transition for scaling and fading */
+}
+
+#bao-container:hover::after {
+  transform: scale(1); /* Scale to full size on hover */
+  opacity: 1;
+  z-index: 3; /* Bring it to the front on hover */
+}
