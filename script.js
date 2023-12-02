@@ -55,11 +55,11 @@ document.addEventListener("DOMContentLoaded", function() {
       if (growing) {
           scaleWidth += changeRate;
           scaleHeight -= changeRate;
-          if (scaleWidth >= 1.01) growing = false;
+          if (scaleWidth >= 1.02) growing = false;
       } else {
           scaleWidth -= changeRate;
           scaleHeight += changeRate;
-          if (scaleWidth <= 0.99) growing = true;
+          if (scaleWidth <= 0.98) growing = true;
       }
 
       baoContainer.style.transform = `scaleX(${scaleWidth}) scaleY(${scaleHeight})`;
